@@ -20,8 +20,8 @@ public class EstimateTimeUseCase {
     public long estimateMinutesByPlaceNames(String fromName, String toName) {
         validateDifferentPlaces(fromName, toName);
 
-        var fromPlaceWithPosition = placeService.getPlaceWithPosition(fromName);
-        var toPlaceWithPosition = placeService.getPlaceWithPosition(toName);
+        PlaceService.PlaceWithPosition fromPlaceWithPosition = placeService.getPlaceWithPosition(fromName);
+        PlaceService.PlaceWithPosition toPlaceWithPosition = placeService.getPlaceWithPosition(toName);
 
         return travelTimeEstimator.estimateMinutes(
             fromPlaceWithPosition.position(),

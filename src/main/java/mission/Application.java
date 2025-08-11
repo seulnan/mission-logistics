@@ -1,11 +1,12 @@
 package mission;
 
+import mission.presentation.ConsoleController;
 import mission.presentation.GlobalExceptionHandler;
 
 public class Application {
     public static void main(String[] args) {
-        var compositionRoot = new CompositionRoot();
-        var controller = compositionRoot.consoleController();
+        CompositionRoot compositionRoot = new CompositionRoot();
+        ConsoleController controller = compositionRoot.consoleController();
 
         try {
             controller.runOnce();
