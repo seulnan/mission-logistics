@@ -1,9 +1,16 @@
 package mission;
 
-import api.Console;
+import mission.presentation.GlobalExceptionHandler;
 
 public class Application {
     public static void main(String[] args) {
-        //TODO: 미션 구현
+        var compositionRoot = new CompositionRoot();
+        var controller = compositionRoot.consoleController();
+
+        try {
+            controller.runOnce();
+        } catch (RuntimeException e) {
+            GlobalExceptionHandler.handle(e);
+        }
     }
 }
