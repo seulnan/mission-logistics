@@ -9,7 +9,6 @@ public class ConsoleOutputView implements OutputView {
     public void printEstimatedTime(Duration duration) {
         long hours = duration.toHours();
         long minutes = duration.toMinutesPart();
-        System.out.println("");
         System.out.println("이동 시간은 " + hours + "시간 " + minutes + "분으로 예측됩니다. ");
     }
 

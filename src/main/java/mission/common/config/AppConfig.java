@@ -20,6 +20,8 @@ public final class AppConfig {
         try {
             return Double.parseDouble(prop.trim());
         } catch (NumberFormatException e) {
+            mission.common.log.Logger.log(AppConfig.class, mission.common.log.LogLevel.WARN,
+                    "Invalid speed configuration: " + prop + ", using default: " + DEFAULT_SPEED);
             return DEFAULT_SPEED;
         }
     }
@@ -35,6 +37,8 @@ public final class AppConfig {
         try {
             return LogLevel.valueOf(prop.trim().toUpperCase());
         } catch (IllegalArgumentException e) {
+            mission.common.log.Logger.log(AppConfig.class, mission.common.log.LogLevel.WARN,
+                    "Invalid log level configuration: " + prop + ", using default: " + DEFAULT_LOG_LEVEL);
             return DEFAULT_LOG_LEVEL;
         }
     }

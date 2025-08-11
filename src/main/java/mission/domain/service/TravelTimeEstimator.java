@@ -20,7 +20,6 @@ public final class TravelTimeEstimator {
     public long estimateMinutes(Position from, Position to) {
         double kilometers = DistanceCalculator.calculateKilometers(from, to);
         double hours = kilometers / speedKmPerHour;
-        long minutesRounded = Math.round(hours * 60);
-        return minutesRounded;
+        return Math.round(hours * 60);
     }
 }
