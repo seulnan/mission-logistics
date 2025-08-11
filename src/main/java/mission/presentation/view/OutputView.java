@@ -1,7 +1,8 @@
 package mission.presentation.view;
 
-public class OutputView {
-    public void println(String text) {
-        System.out.println(text);
-    }
+import java.time.Duration;
+
+public interface OutputView {
+    void printEstimatedTime(Duration duration);
+    void printError(String message);
 }

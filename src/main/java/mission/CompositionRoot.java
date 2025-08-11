@@ -6,9 +6,8 @@ import mission.domain.service.PlaceService;
 import mission.domain.service.TravelTimeEstimator;
 import mission.infrastructure.csv.CsvPlaceRepository;
 import mission.presentation.ConsoleController;
-import mission.presentation.formatter.TravelTimeFormatter;
-import mission.presentation.view.InputView;
-import mission.presentation.view.OutputView;
+import mission.presentation.view.implement.ConsoleInputView;
+import mission.presentation.view.implement.ConsoleOutputView;
 
 /**
  * 의존성 생성 및 조립을 담당하는 구성 루트.
@@ -19,17 +18,15 @@ public class CompositionRoot {
     private final PlaceService placeService;
     private final TravelTimeEstimator travelTimeEstimator;
     private final EstimateTimeUseCase estimateTimeUseCase;
-    private final TravelTimeFormatter timeFormatter;
 
     public CompositionRoot() {
         this.placeRepository = new CsvPlaceRepository();
         this.placeService = new PlaceService(placeRepository);
         this.travelTimeEstimator = new TravelTimeEstimator(AppConfig.speedKmPerHour());
         this.estimateTimeUseCase = new EstimateTimeUseCase(placeService, travelTimeEstimator);
-        this.timeFormatter = new TravelTimeFormatter();
     }
 
     public ConsoleController consoleController() {
-        return new ConsoleController(estimateTimeUseCase, placeService, new InputView(), new OutputView(), timeFormatter);
+        return new ConsoleController(estimateTimeUseCase, placeService, new ConsoleInputView(), new ConsoleOutputView());
     }
 }

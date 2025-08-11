@@ -53,10 +53,17 @@ public class CsvPlaceRepository implements PlaceRepository {
 
     private void loadPlaces() {
         try (InputStream is = getResource("/place.csv");
-             BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
+        BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
             String line = br.readLine(); // header
             while ((line = br.readLine()) != null) {
+                line = line.trim();
+                if (line.isEmpty()) {
+                    continue; // 빈 줄 스킵
+                }
                 String[] fields = line.split(",");
+                if (fields.length < 3) {
+                    continue; // 필드가 부족한 줄 스킵
+                }
                 int id = Integer.parseInt(fields[0].trim());
                 String name = fields[1].trim();
                 String address = fields[2].trim();
@@ -71,10 +78,17 @@ public class CsvPlaceRepository implements PlaceRepository {
 
     private void loadPositions() {
         try (InputStream is = getResource("/position.csv");
-             BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
+        BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
             String line = br.readLine(); // header
             while ((line = br.readLine()) != null) {
+                line = line.trim();
+                if (line.isEmpty()) {
+                    continue; // 빈 줄 스킵
+                }
                 String[] fields = line.split(",");
+                if (fields.length < 3) {
+                    continue; // 필드가 부족한 줄 스킵
+                }
                 int placeId = Integer.parseInt(fields[0].trim());
                 double lat = Double.parseDouble(fields[1].trim());
                 double lng = Double.parseDouble(fields[2].trim());

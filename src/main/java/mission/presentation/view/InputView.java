@@ -1,10 +1,6 @@
 package mission.presentation.view;
 
-import api.Console;
-
-public class InputView {
-
-    public String readLine() {
-        return Console.readLine();
-    }
+public interface InputView {
+    String inputStartName();
+    String inputEndName();
 }
